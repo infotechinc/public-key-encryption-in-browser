@@ -39,9 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         return window.crypto.subtle.generateKey(
             {
-                name: "RSAES-PKCS1-v1_5",
+                name: "RSA-OAEP",
                 modulusLength: 2048,
-                publicExponent: new Uint8Array([1, 0, 1])   // 24 bit representation of 65537
+                publicExponent: new Uint8Array([1, 0, 1]),  // 24 bit representation of 65537
+                hash: {name: "SHA-256"}
             },
             true,   // can extract it later if we want
             ["encrypt", "decrypt"]).
@@ -150,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Returns a Promise that yields an ArrayBuffer containing
                     // the encryption of the exportedKey provided as a parameter,
                     // using the publicKey found in an enclosing scope.
-                    return window.crypto.subtle.encrypt({name: "RSAES-PKCS1-v1_5"}, publicKey, exportedKey);
+                    return window.crypto.subtle.encrypt({name: "RSA-OAEP"}, publicKey, exportedKey);
                 }
 
                 function packageResults(encryptedKey) {
@@ -226,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Returns a Promise that yields a Uint8Array AES key.
                     // encryptedKey is a Uint8Array, privateKey is the privateKey
                     // property of a Key key pair.
-                    return window.crypto.subtle.decrypt({name: "RSAES-PKCS1-v1_5"}, privateKey, encryptedKey);
+                    return window.crypto.subtle.decrypt({name: "RSA-OAEP"}, privateKey, encryptedKey);
                 }
 
 
