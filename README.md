@@ -19,7 +19,7 @@ the Google Chrome browser with the optional "Enable Experimental Web Platform
 features" flag enabled and recent nightly builds of the Firefox browser could
 run the example.
 
-This example uses RSA-PKCS1-v1_5 to encrypt a random 128-bit AES key, then uses
+This example uses RSA-OAEP to encrypt a random 128-bit AES key, then uses
 AES in CBC mode with the random key and a 16 byte random initialization
 vector. The encrypted AES key, random initialization vector, and AES-CBC
 encrypted results are packaged into a single encrypted file.
